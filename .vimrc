@@ -8,7 +8,8 @@ filetype indent on
 set shiftwidth=4
 set tabstop=4
 "Be smart when using tabs
-set smarttab
+"set smarttab
+set expandtab
 
 set number
 filetype on
@@ -16,13 +17,13 @@ syntax on
 set incsearch
 set hlsearch
 colorscheme grb256
-set guifont=Monaco\ 15
+set guifont=Monaco:h19
 set cursorline
 "}}}
 "Mappings-----------{{{
 "Uppercase the current word
-inoremap <c-u> <esc>vUa
-nnoremap <c-u> vU
+"inoremap <c-u> <esc>vUa
+"nnoremap <c-u> vU
 "Lowercase the current word
 inoremap <c-l> <esc>vua
 nnoremap <c-l> vu
@@ -41,15 +42,25 @@ nnoremap <leader>W :match none<cr>
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
 
+" navigvation
+nnoremap gl g$
 "Move to beginning or ending of the word
 nnoremap <leader>h ^
 nnoremap <leader>l $
 inoremap <leader>h <esc>^i
 inoremap <leader>l <esc>$a
 
+
+
 "exit insert mode
 inoremap jk <esc>
 inoremap <nop> <esc>
+
+"move between tabs
+nnoremap <leader>t] :tabnext<cr>
+nnoremap <leader>t[ :tabprevious<cr>
+nnoremap <leader>tf :tabfirst<cr>
+nnoremap <leader>tl :tablast<cr>
 
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
@@ -61,7 +72,8 @@ noremap <leader>cb vi{
 nnoremap <c-v> "+p
 "copy to clipboard
 vnoremap <c-c> "+y
-nnoremap <c-t> :NERDTree<cr>
+nnoremap <c-t> :NERDTreeToggle<cr>
+nnoremap <c-s> :TagbarToggle<cr>
 "}}}
 "abbreviations{{{
 iabbrev adn and
@@ -105,6 +117,9 @@ Bundle 'pythoncomplete'
 Bundle 'xml.vim'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'scrooloose/nerdcommenter'
+Bundle 'Tagbar'
+Bundle 'pyflakes/pyflakes-vim'
+Bundle 'godlygeek/tabular'
 filetype plugin indent on
 "}}}
 "NeoComplCache-----{{{
@@ -194,7 +209,7 @@ let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 "}}}
 "Pydiction{{{
 "pydiction 1.2 python auto complete
-filetype plugin on
+"filetype plugin on
 let g:pydiction_location = $HOME.'/.vim/bundle/Pydiction/complete-dict'
 "default g:pydiction_menu_height == 15
 "let g:pydiction_menu_height = 20
@@ -202,7 +217,7 @@ let g:pydiction_location = $HOME.'/.vim/bundle/Pydiction/complete-dict'
 "Poweline-----{{{
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 let t_Co=256
-set nocompatible
+"set nocompatible
 set laststatus=2
 set encoding=utf-8
 let g:Powerline_symbols = 'fancy'
