@@ -144,7 +144,7 @@ Bundle 'bash-support.vim'
 Bundle 'perl-support.vim'
 "Bundle 'Shougo/neocomplcache.git'
 "Bundle 'Shougo/neosnippet.git'
-Bundle "Valloric/YouCompleteMe"
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'rdnetto/YCM-Generator'
 Bundle 'scrooloose/nerdtree'
 Bundle 'matrix.vim--Yang'
