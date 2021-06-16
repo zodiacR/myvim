@@ -1,4 +1,4 @@
-"Basic settings------{{{
+"Basic settings------
 
 "Enable filetype plugin
 filetype plugin on
@@ -30,8 +30,8 @@ if has("gui_running")
     endif
 endif
 set cursorline
-"}}}
-"Mappings-----------{{{
+"
+"Mappings-----------
 "Uppercase the current word
 "inoremap <c-u> <esc>vUa
 "nnoremap <c-u> vU
@@ -93,81 +93,90 @@ nnoremap <c-s> :TagbarToggle<cr>
 
 "
 nnoremap <leader>rp :execute "!python "."'".expand("%:p")."'"<cr>
-"}}}
+"
 
-" autocmd --------{{{
+" autocmd --------
 autocmd BufNewFile *.py call AddAuthorInfo()
-" ------}}}
+" ------
 
-" customized function -------{{{
+" customized function -------
 function! AddAuthorInfo()
     call append(0,'#!/usr/bin/python')
     call append(1, '#-*-coding:utf-8 -*-')
     call append(2, '#Author   : Zodiac')
     call append(3, '#Version  : 1.0')
     call append(4, '#Filename : '.expand("%:t"))
+    call append(5, 'from __future__ import print_function')
+    call append(6, '')
+    call append(7, 'def main():')
+    call append(8, '    pass')
+    call append(9, '')
+    call append(10, 'if __name__ == "__main__":')
+    call append(11, '    main()')
 endfunction
-" -------}}}
+" -------
 
-"abbreviations{{{
+"abbreviations
 iabbrev adn and
 iabbrev waht what
 iabbrev tehn then
 iabbrev taht that
-"}}}
+"
 
-"operator-pending mappings{{{
+"operator-pending mappings
 onoremap in( :<c-u>normal! f(vi(<cr>
 onoremap il( :<c-u>normal! F)vi(<cr>
 onoremap in{ :<c-u>normal! f{vi{<cr>
 onoremap il{ :<c-u>normal! F}vi{<cr>
-"}}}
+"
 
 "author and email
 iabbrev ssig "author:Zodiac email:eminemhe@163.com
 
-"Vimscript file settings-----------{{{
+"Vimscript file settings-----------
 augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
-"}}}
-"Vundle settings----{{{
+"
+"Vundle settings----
 "For vundle
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Bundle 'gmarik/vundle'
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
 "vim-scripts repos
-Bundle 'bash-support.vim'
-Bundle 'perl-support.vim'
-"Bundle 'Shougo/neocomplcache.git'
-"Bundle 'Shougo/neosnippet.git'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'rdnetto/YCM-Generator'
-Bundle 'scrooloose/nerdtree'
-Bundle 'matrix.vim--Yang'
-Bundle 'Pydiction'
-Bundle 'pythoncomplete'
-Bundle 'xml.vim'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'Tagbar'
-Bundle 'pyflakes/pyflakes-vim'
-Bundle 'godlygeek/tabular'
-Bundle 'plasticboy/vim-markdown'
-Bundle 'JamshedVesuna/vim-markdown-preview'
+Plugin 'bash-support.vim'
+Plugin 'perl-support.vim'
+"Plugin 'Shougo/neocomplcache.git'
+"Plugin 'Shougo/neosnippet.git'
+Plugin 'Valloric/YouCompleteMe'
+"Plugin 'davidhalter/jedi-vim'
+Plugin 'rdnetto/YCM-Generator'
+Plugin 'scrooloose/nerdtree'
+Plugin 'matrix.vim--Yang'
+Plugin 'Pydiction'
+Plugin 'pythoncomplete'
+Plugin 'xml.vim'
+Plugin 'Lokaltog/vim-powerline'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'Tagbar'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'dense-analysis/ale'
+Plugin 'JamshedVesuna/vim-markdown-preview'
+call vundle#end()
 filetype plugin indent on
-"}}}
-"Pydiction{{{
+"
+"Pydiction
 "pydiction 1.2 python auto complete
 "filetype plugin on
 let g:pydiction_location = $HOME.'/.vim/bundle/Pydiction/complete-dict'
 "default g:pydiction_menu_height == 15
 "let g:pydiction_menu_height = 20
-"}}}
-"Poweline-----{{{
+"
+"Poweline-----
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 let t_Co=256
 "set nocompatible
@@ -175,8 +184,20 @@ set laststatus=2
 set encoding=utf-8
 let g:Powerline_symbols = 'fancy'
 set fillchars+=stl:\ ,stlnc:\
-"}}}
-"Toggling-------{{{
+"
+
+" Youcompletemy-----
+let g:ycm_python_binary_path = 'python'
+let g:ycm_python_interpreter_path = ''
+let g:ycm_python_sys_path = []
+let g:ycm_extra_conf_vim_data = [
+  \  'g:ycm_python_interpreter_path',
+  \  'g:ycm_python_sys_path'
+  \]
+let g:ycm_global_ycm_extra_conf = '~/global_extra_conf.py'
+"
+
+"Toggling-------
 "foldcolumn
 nnoremap <leader>f :call FoldColumnToggle()<cr>
 
@@ -218,8 +239,8 @@ function! ToggleMenuBar()
 		set guioptions+=m
 	endif
 endfunction
-"}}}
-"Python_Folding---{{{
+"
+"Python_Folding---
 if exists("b:did_ftplugin")
 finish
 endif
@@ -299,8 +320,8 @@ function! ReFold()
     set foldtext=PythonFoldText()
     echo 
 endfunction
-"}}}
-"Markdown Previw----{{{
+"
+"Markdown Previw----
 let vim_markdown_preview_github=1
 let vim_markdown_preview_toggle=2
-"----}}}
+"----
